@@ -1,12 +1,17 @@
 package com.example.f22comp1011s2w2;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 
-public class CreatePizzaController {
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class CreatePizzaController implements Initializable {
 
     @FXML
     private CheckBox baconCheckBox;
@@ -45,7 +50,7 @@ public class CreatePizzaController {
     private CheckBox pineappleCheckBox;
 
     @FXML
-    private ComboBox<?> pizzaSizeComboBox;
+    private ComboBox<String> pizzaSizeComboBox;
 
     @FXML
     private CheckBox redPepperCheckBox;
@@ -74,4 +79,18 @@ public class CreatePizzaController {
     @FXML
     private RadioButton wholeWheatRadioButton;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        pizzaSizeComboBox.getItems().addAll(Pizza.validSizes());
+    }
+
+    @FXML
+    private void createPizza()
+    {
+        ArrayList<String> toppings = new ArrayList<>();
+        toppings.add("pepperoni");
+        toppings.add("pineapple");
+        Pizza newPizza = new Pizza("small",toppings,"regular","regular","tomato", false,199.99);
+        costPizzaLabel.setText(newPizza.toString());
+    }
 }
