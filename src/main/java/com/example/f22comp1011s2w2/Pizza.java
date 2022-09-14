@@ -28,7 +28,7 @@ public class Pizza {
 
     public static List<String> validSizes()
     {
-        return Arrays.asList("small", "medium", "large");
+        return Arrays.asList("small", "medium", "large","x-large");
     }
 
     /**
