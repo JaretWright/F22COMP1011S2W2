@@ -3,10 +3,7 @@ package com.example.f22comp1011s2w2;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -72,7 +69,7 @@ public class CreatePizzaController implements Initializable {
     private RadioButton regularCrustRadioButton;
 
     @FXML
-    private ComboBox<?> sauceComboBox;
+    private ComboBox<String> sauceComboBox;
 
     @FXML
     private CheckBox sausageCheckBox;
@@ -88,6 +85,8 @@ public class CreatePizzaController implements Initializable {
 
     @FXML
     private RadioButton wholeWheatRadioButton;
+
+    private ToggleGroup doughToggleGroup, crustStyleToggleGroup;
 
     /**
      * The initialize method is loaded when the scene is loaded.  It is used
@@ -106,6 +105,20 @@ public class CreatePizzaController implements Initializable {
         {
             meatsVBox.getChildren().add(new CheckBox(meat));
         }
+
+        //configure the toggle groups so that the radio button's will only
+        //allow 1 at a time to be selected
+        doughToggleGroup = new ToggleGroup();
+        regDoughRadioButton.setToggleGroup(doughToggleGroup);
+        wholeWheatRadioButton.setToggleGroup(doughToggleGroup);
+
+        crustStyleToggleGroup = new ToggleGroup();
+        regularCrustRadioButton.setToggleGroup(crustStyleToggleGroup);
+        thinCrustRadioButton.setToggleGroup(crustStyleToggleGroup);
+        deepDishRadioButton.setToggleGroup(crustStyleToggleGroup);
+
+        //configure the sauces combobox with all available sauce types
+        sauceComboBox.getItems().addAll(Pizza.getAvailableSauces());
     }
 
     @FXML

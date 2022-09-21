@@ -75,12 +75,21 @@ public class Pizza {
         this.crustStyle = crustStyle;
     }
 
+    public static List<String> getAvailableSauces()
+    {
+        return Arrays.asList("tomato","pesto","bar bq","alfredo","habanero","artichoke");
+    }
+
     public String getSauce() {
         return sauce;
     }
 
     public void setSauce(String sauce) {
-        this.sauce = sauce;
+        sauce = sauce.trim().toLowerCase();
+        if (getAvailableSauces().contains(sauce))
+            this.sauce = sauce;
+        else
+            throw new IllegalArgumentException( sauce + " must be from the list "+getAvailableSauces());
     }
 
     public boolean isDelivery() {
