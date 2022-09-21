@@ -1,5 +1,7 @@
 package com.example.f22comp1011s2w2;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -13,6 +15,9 @@ import java.util.ResourceBundle;
 import java.util.TreeSet;
 
 public class CreatePizzaController implements Initializable {
+
+    @FXML
+    private TextField numberTextField;
 
     @FXML
     private VBox meatsVBox;
@@ -96,6 +101,21 @@ public class CreatePizzaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //configure the phone number textfield to only accept numbers
+//        TelephoneListener teleListener = new TelephoneListener();
+//        numberTextField.textProperty().addListener(teleListener);
+
+        //the anonymous inner class
+        numberTextField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            try{
+                Integer.parseInt(newValue);
+            }
+            catch(Exception e)
+            {
+                numberTextField.setText(oldValue);
+            }
+        });
+
         pizzaSizeComboBox.getItems().addAll(Pizza.validSizes());
 
         //get a list of the meat toppings and add them to the MeatsVBox as a
