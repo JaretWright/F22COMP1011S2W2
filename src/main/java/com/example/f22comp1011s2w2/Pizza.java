@@ -1,8 +1,6 @@
 package com.example.f22comp1011s2w2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Pizza {
     private String size;
@@ -29,6 +27,13 @@ public class Pizza {
     public static List<String> validSizes()
     {
         return Arrays.asList("small", "medium", "large","x-large","Scorpio");
+    }
+
+    public static TreeSet<String> getMeatToppingOptions()
+    {
+        TreeSet<String> toppingsSet = new TreeSet<>();
+        toppingsSet.addAll(Arrays.asList("Bacon","Sausage","Beef Crumble","Ham","Salami","Bacon"));
+        return toppingsSet;
     }
 
     /**

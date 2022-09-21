@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.f22comp1011s2w2.CreatePizzaController">
    <children>
       <BorderPane layoutX="-6.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
@@ -29,7 +28,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <VBox spacing="5.0" GridPane.rowIndex="1">
+                  <VBox fx:id="veggisVBox" spacing="5.0" GridPane.rowIndex="1">
                      <children>
                         <CheckBox fx:id="mushroomsCheckBox" mnemonicParsing="false" text="Mushrooms" />
                         <CheckBox fx:id="onionCheckBox" mnemonicParsing="false" text="Onion" />
@@ -41,13 +40,7 @@
                         <CheckBox fx:id="cornCheckBox" mnemonicParsing="false" text="Corn" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <CheckBox fx:id="pepperoniCheckBox" mnemonicParsing="false" text="Pepperoni" />
-                        <CheckBox fx:id="baconCheckBox" mnemonicParsing="false" text="Bacon" />
-                        <CheckBox fx:id="sausageCheckBox" mnemonicParsing="false" text="Sausage" />
-                     </children>
-                  </VBox>
+                  <VBox fx:id="meatsVBox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Choose Toppings" />
                </children>
                <padding>
