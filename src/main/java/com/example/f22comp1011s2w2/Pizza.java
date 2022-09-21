@@ -7,9 +7,8 @@ public class Pizza {
     private ArrayList<String> toppings;
     private String dough, crustStyle, sauce;
     private boolean delivery;
-    private double price;
 
-    public Pizza(String size, ArrayList<String> toppings, String dough, String crustStyle, String sauce, boolean delivery, double price) {
+    public Pizza(String size, ArrayList<String> toppings, String dough, String crustStyle, String sauce, boolean delivery) {
         //here is a comment
         setSize(size);
         setToppings(toppings);
@@ -17,7 +16,6 @@ public class Pizza {
         setCrustStyle(crustStyle);
         setSauce(sauce);
         setDelivery(delivery);
-        setPrice(price);
     }
 
     public String getSize() {
@@ -26,7 +24,18 @@ public class Pizza {
 
     public static List<String> validSizes()
     {
-        return Arrays.asList("small", "medium", "large","x-large","Scorpio");
+        return Arrays.asList("small", "medium", "large","x-large","scorpio");
+    }
+
+    public static TreeMap<String,Double> getPricesBySize()
+    {
+        TreeMap<String, Double> sizeAndPrices = new TreeMap<>();
+        sizeAndPrices.put("small", 8.99);
+        sizeAndPrices.put("medium", 11.99);
+        sizeAndPrices.put("large", 16.99);
+        sizeAndPrices.put("x-large", 22.99);
+        sizeAndPrices.put("scorpio", 99.99);
+        return sizeAndPrices;
     }
 
     public static TreeSet<String> getMeatToppingOptions()
@@ -86,7 +95,7 @@ public class Pizza {
 
     public void setSauce(String sauce) {
         sauce = sauce.trim().toLowerCase();
-        if (getAvailableSauces().contains(sauce))
+        if (getAvailableSauces().contains(sauce))  //contains() is a case sensitive search
             this.sauce = sauce;
         else
             throw new IllegalArgumentException( sauce + " must be from the list "+getAvailableSauces());
@@ -101,10 +110,21 @@ public class Pizza {
     }
 
     public double getPrice() {
-        return price;
-    }
+        double price = 0;
 
-    public void setPrice(double price) {
-        this.price = price;
+        //add the cost of the pizza size
+        price += getPricesBySize().get(size);
+
+        //add the toppings (3 free and $1.15 for each additional topping
+        if (toppings.size()>3)
+        {
+            price += (toppings.size()-3)*1.15;
+        }
+
+        //add the delivery charge of $5
+        if (delivery)
+            price += 5;
+
+        return price;
     }
 }
