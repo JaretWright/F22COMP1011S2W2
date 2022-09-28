@@ -1,3 +1,7 @@
+-- this will create a user called "student" with a password of "student"
+CREATE USER 'student'@'localhost' IDENTIFIED BY 'student';
+GRANT ALL PRIVILEGES ON * . * TO 'student'@'localhost';
+
 CREATE DATABASE F22;
 USE F22;
 
@@ -59,3 +63,5 @@ INNER JOIN toppingsOnPizza
 INNER JOIN toppings
 WHERE pizzas.pizzaID = toppingsOnPizza.pizzaID && 
 		toppingsOnPizza.toppingID = toppings.toppingID;
+
+SELECT * FROM toppings;
