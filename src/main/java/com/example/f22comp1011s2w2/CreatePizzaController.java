@@ -121,10 +121,10 @@ public class CreatePizzaController implements Initializable {
         //get a list of the meat toppings and add them to the MeatsVBox as a
         //CheckBox
         ArrayList<Topping> toppings = DBUtility.getToppingsFromDB();
-        for (Topping topping : toppings)
+        for (Topping toppingObject : toppings)
         {
-            if (topping.getCategory().equals("meat"))
-                meatsVBox.getChildren().add(new CheckBox(topping.getName()));
+            if (toppingObject.getCategory().equals("meat"))
+                meatsVBox.getChildren().add(new CheckBox(toppingObject.getName()));
         }
 
         //configure the toggle groups so that the radio button's will only

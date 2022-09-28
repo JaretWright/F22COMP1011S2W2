@@ -3,7 +3,7 @@ package com.example.f22comp1011s2w2;
 import java.util.Arrays;
 import java.util.List;
 
-public class Topping {
+public class Topping implements Comparable<Topping>{
     private int toppingID;
     private String name, category;
 
@@ -51,5 +51,10 @@ public class Topping {
     public String toString()
     {
         return name;
+    }
+
+    @Override
+    public int compareTo(Topping otherTopping) {
+        return this.name.compareTo(otherTopping.getName());
     }
 }
