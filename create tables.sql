@@ -1,15 +1,21 @@
 CREATE DATABASE F22;
 USE F22;
 
+DROP TABLE IF EXISTS toppingsonpizza;
+DROP TABLE IF EXISTS toppings;
+DROP TABLE IF EXISTS pizzas;
+
 CREATE TABLE toppings
 (
 	toppingID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    toppingName VARCHAR(30)
+    toppingName VARCHAR(30),
+    category VARCHAR(20)
 );
 
 CREATE TABLE pizzas
 (
 	pizzaID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    size VARCHAR(10),
     dough VARCHAR(15),
     crustStyle VARCHAR(15),
     sauce VARCHAR(10),
@@ -26,13 +32,19 @@ CREATE TABLE toppingsOnPizza
     FOREIGN KEY (toppingID) REFERENCES toppings(toppingID)
 );
 
-INSERT INTO toppings (toppingName) VALUES ('cheese'),('olives'),('pepperoni'),
-										('anchovies'),('pineapple');
+INSERT INTO toppings (toppingName,category) 
+VALUES ('Cheese','dairy'),('Olives','veggie'),('Pepperoni','meat'),
+	   ('Anchovies', 'meat'),('Pineapple','veggie'),
+	   ('Bacon','meat'),('Sausage','meat'),('Beef Crumble','meat'),
+	   ('Ham','meat'),('Salami','meat'),('Mushrooms','veggie'),
+       ('Onion','veggie'),('Green Pepper','veggie'),('Roasted Red Pepper','veggie'),
+       ('Jalapeno','veggie'),('corn','veggie');
+       ;
 									
 SELECT * FROM toppings;
 
-INSERT INTO pizzas (dough, crustStyle, sauce, delivery, price) VALUES
-	('whole wheat','thin','tomato',true,35.99);
+INSERT INTO pizzas (size,dough, crustStyle, sauce, delivery, price) VALUES
+	('large','whole wheat','thin','tomato',true,35.99);
 
 SELECT * FROM pizzas;
 
