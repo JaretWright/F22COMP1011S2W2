@@ -41,7 +41,7 @@ public class Topping {
     }
 
     public void setCategory(String category) {
-        List<String> categories = Arrays.asList("veggie","meat","diary");
+        List<String> categories = Arrays.asList("veggie","meat","dairy");
         if (categories.contains(category))
             this.category = category;
         else
