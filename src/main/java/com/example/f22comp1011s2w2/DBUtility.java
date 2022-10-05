@@ -2,6 +2,8 @@ package com.example.f22comp1011s2w2;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class DBUtility {
@@ -59,9 +61,11 @@ public class DBUtility {
      * objects
      * @return
      */
-    public static TreeSet<Pizza> getPizzasFromDB()
+    public static Collection<Pizza> getPizzasFromDB()
     {
-        TreeSet<Pizza> pizzas = new TreeSet<>();
+        //the pizzaID will be the key, the pizza will be the value
+        TreeMap<Integer,Pizza> pizzas = new TreeMap<>();
+
         ArrayList<Topping> allToppings = DBUtility.getToppingsFromDB();
 
         //create the sql string we want to run on the database
@@ -94,15 +98,30 @@ public class DBUtility {
                 String sauce = resultSet.getString("sauce");
                 Boolean delivery = resultSet.getBoolean("delivery");
                 Double price = resultSet.getDouble("price");
-
                 int toppingID = resultSet.getInt("toppingID");
+
+
+                //check if the pizzaID is already in the TreeMap
+                if (pizzas.keySet().contains(pizzaID))
+                {
+                    //the pizza already exists, just add more toppings
+                    pizzas.get(pizzaID).getToppings().add(allToppings.get(toppingID-1));
+                }
+                else
+                {
+                    //the pizza does not exist, create it and add it to the TreeMap
+                    ArrayList<Topping> toppings = new ArrayList<>();
+                    toppings.add(allToppings.get(toppingID-1));  //The toppingID in the database
+                                                                //starts at 1.  In the arraylist
+                                                                //it starts at 0.
+                    Pizza newPizza = new Pizza(pizzaID,size,toppings,dough,crust,sauce,delivery);
+                    pizzas.put(pizzaID,newPizza);
+                }
             }
         } catch (Exception e)
         {
             e.printStackTrace();
         }
-        return pizzas;
+        return pizzas.values();
     }
-
-
 }

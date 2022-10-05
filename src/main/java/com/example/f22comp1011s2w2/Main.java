@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Main extends Application {
     @Override
@@ -19,7 +20,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        ArrayList<Topping> toppings = DBUtility.getToppingsFromDB();
+        Collection<Pizza> pizzas = DBUtility.getPizzasFromDB();
         launch();
     }
 }
