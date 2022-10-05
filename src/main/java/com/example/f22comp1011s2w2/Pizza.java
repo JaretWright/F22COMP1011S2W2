@@ -2,11 +2,12 @@ package com.example.f22comp1011s2w2;
 
 import java.util.*;
 
-public class Pizza {
+public class Pizza implements Comparable<Pizza>{
     private String size;
     private ArrayList<Topping> toppings;
     private String dough, crustStyle, sauce;
     private boolean delivery;
+    private int pizzaID;
 
     public Pizza(String size, ArrayList<Topping> toppings, String dough, String crustStyle, String sauce, boolean delivery) {
         //here is a comment
@@ -16,6 +17,26 @@ public class Pizza {
         setCrustStyle(crustStyle);
         setSauce(sauce);
         setDelivery(delivery);
+    }
+
+    /**
+     *  This constructor is "overloaded" which means that this class has 2 constructors
+     *  This constructor will call the other constructor and then set the pizzaID
+     */
+    public Pizza(int pizzaID, String size, ArrayList<Topping> toppings, String dough, String crustStyle, String sauce, boolean delivery) {
+        this(size,toppings, dough, crustStyle, sauce, delivery);
+        setPizzaID(pizzaID);
+    }
+
+    public int getPizzaID() {
+        return pizzaID;
+    }
+
+    public void setPizzaID(int pizzaID) {
+        if (pizzaID>0)
+            this.pizzaID = pizzaID;
+        else
+            throw new IllegalArgumentException("pizza id should be greater than 0");
     }
 
     public String getSize() {
@@ -134,5 +155,10 @@ public class Pizza {
             price += 5;
 
         return price;
+    }
+
+    @Override
+    public int compareTo(Pizza otherPizza) {
+        return Integer.compare(pizzaID,otherPizza.pizzaID);
     }
 }

@@ -2,6 +2,7 @@ package com.example.f22comp1011s2w2;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class DBUtility {
     private static String user = "student"; //MySQL server username
@@ -52,5 +53,56 @@ public class DBUtility {
         }
         return toppings;
     }
+
+    /**
+     * This method will query the DB and return an ArrayList of Pizza
+     * objects
+     * @return
+     */
+    public static TreeSet<Pizza> getPizzasFromDB()
+    {
+        TreeSet<Pizza> pizzas = new TreeSet<>();
+        ArrayList<Topping> allToppings = DBUtility.getToppingsFromDB();
+
+        //create the sql string we want to run on the database
+        String sql = "SELECT pizzas.pizzaID, size, dough, crustStyle,sauce,delivery,price,toppings.toppingID,toppingName " +
+                "FROM pizzas INNER JOIN toppingsonpizza " +
+                "INNER JOIN toppings " +
+                "WHERE toppings.toppingID = toppingsonpizza.toppingID AND pizzas.pizzaID = toppingsonpizza.pizzaID " +
+                "ORDER BY pizzas.pizzaID,toppingsonpizza.toppingonpizzaID;";
+
+        //the try () is called "try with resources".  Anything opened in the () will
+        //automatically close when the try block is done.
+        try(
+                //1.  connect to the database
+                Connection conn = DriverManager.getConnection(connectUrl,user,pw);
+
+                //2.  create a statement object
+                Statement statement = conn.createStatement();
+
+                //3.  use the statement object to run the sql and return a ResultSet object
+                ResultSet resultSet = statement.executeQuery(sql);
+        )
+        {
+            //4.  loop over the resultSet and create Topping objects
+            while (resultSet.next())
+            {
+                int pizzaID = resultSet.getInt("pizzaID");
+                String size = resultSet.getString("size");
+                String dough = resultSet.getString("dough");
+                String crust = resultSet.getString("crustStyle");
+                String sauce = resultSet.getString("sauce");
+                Boolean delivery = resultSet.getBoolean("delivery");
+                Double price = resultSet.getDouble("price");
+
+                int toppingID = resultSet.getInt("toppingID");
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return pizzas;
+    }
+
 
 }
