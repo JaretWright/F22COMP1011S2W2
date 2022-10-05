@@ -1,5 +1,7 @@
 package com.example.f22comp1011s2w2;
 
+import javafx.util.converter.CurrencyStringConverter;
+
 import java.util.*;
 
 public class Pizza implements Comparable<Pizza>{
@@ -160,5 +162,11 @@ public class Pizza implements Comparable<Pizza>{
     @Override
     public int compareTo(Pizza otherPizza) {
         return Integer.compare(pizzaID,otherPizza.pizzaID);
+    }
+
+    public String getFormattedPrice()
+    {
+        CurrencyStringConverter csc = new CurrencyStringConverter(Locale.CANADA);
+        return csc.toString(getPrice());
     }
 }
