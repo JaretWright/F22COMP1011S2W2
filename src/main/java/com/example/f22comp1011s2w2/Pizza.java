@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Pizza {
     private String size;
-    private ArrayList<String> toppings;
+    private ArrayList<Topping> toppings;
     private String dough, crustStyle, sauce;
     private boolean delivery;
 
-    public Pizza(String size, ArrayList<String> toppings, String dough, String crustStyle, String sauce, boolean delivery) {
+    public Pizza(String size, ArrayList<Topping> toppings, String dough, String crustStyle, String sauce, boolean delivery) {
         //here is a comment
         setSize(size);
         setToppings(toppings);
@@ -60,11 +60,11 @@ public class Pizza {
             throw new IllegalArgumentException("valid sizes are: " + validSizes);
     }
 
-    public ArrayList<String> getToppings() {
+    public ArrayList<Topping> getToppings() {
         return toppings;
     }
 
-    public void setToppings(ArrayList<String> toppings) {
+    public void setToppings(ArrayList<Topping> toppings) {
         this.toppings = toppings;
     }
 
@@ -78,6 +78,14 @@ public class Pizza {
 
     public String getCrustStyle() {
         return crustStyle;
+    }
+
+    public static List<String> getCrustOptions() {
+        return Arrays.asList("regular", "thin", "hand tossed","NY style","stuffed");
+    }
+
+    public static List<String> getDoughOptions() {
+        return Arrays.asList("regular", "whole wheat", "gluten free");
     }
 
     public void setCrustStyle(String crustStyle) {

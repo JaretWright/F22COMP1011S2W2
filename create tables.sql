@@ -63,5 +63,9 @@ INNER JOIN toppingsOnPizza
 INNER JOIN toppings
 WHERE pizzas.pizzaID = toppingsOnPizza.pizzaID && 
 		toppingsOnPizza.toppingID = toppings.toppingID;
+        
+SELECT * FROM pizzas;
+SELECT * FROM toppings;
+
 
 SELECT * FROM toppings;

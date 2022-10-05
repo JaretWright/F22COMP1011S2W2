@@ -169,13 +169,13 @@ public class CreatePizzaController implements Initializable {
         RadioButton doughRBSelected = (RadioButton) doughToggleGroup.getSelectedToggle();
         RadioButton crustRBSelected = (RadioButton) crustStyleToggleGroup.getSelectedToggle();
 
-        Pizza newPizza = new Pizza(pizzaSizeComboBox.getValue(),
-                            toppings,
-                            doughRBSelected.getText(),
-                            crustRBSelected.getText(),
-                            sauceComboBox.getValue(),
-                            deliveryCheckBox.isSelected());
-        costPizzaLabel.setText(String.format("$%.2f",newPizza.getPrice()));
+//        Pizza newPizza = new Pizza(pizzaSizeComboBox.getValue(),
+//                            toppings,
+//                            doughRBSelected.getText(),
+//                            crustRBSelected.getText(),
+//                            sauceComboBox.getValue(),
+//                            deliveryCheckBox.isSelected());
+//        costPizzaLabel.setText(String.format("$%.2f",newPizza.getPrice()));
 //        costPizzaLabel.setText(newPizza.toString());
     }
 }
