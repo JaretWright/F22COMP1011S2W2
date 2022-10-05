@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("create-pizza-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("pizza-table-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Scorpio's Pizza");
         stage.setScene(scene);

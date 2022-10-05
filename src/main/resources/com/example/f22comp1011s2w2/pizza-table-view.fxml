@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.f22comp1011s2w2.PizzaTableController">
+   <children>
+      <VBox layoutX="332.0" layoutY="200.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TableView fx:id="tableView">
+              <columns>
+                <TableColumn fx:id="pizzaIdColumn" prefWidth="120.0" text="Pizza ID" />
+                <TableColumn fx:id="sizeColumn" prefWidth="91.0" text="Size" />
+                  <TableColumn fx:id="doughColumn" prefWidth="107.0" text="Dough" />
+                  <TableColumn fx:id="crustColumn" prefWidth="112.0" text="Crust" />
+                  <TableColumn fx:id="sauceColumn" maxWidth="100.0" prefWidth="100.0" text="Sauce" />
+                  <TableColumn fx:id="priceColumn" maxWidth="100.0" prefWidth="100.0" text="Price" />
+                  <TableColumn fx:id="toppingsColumn" maxWidth="369.0" prefWidth="369.0" text="Toppings" />
+              </columns>
+            </TableView>
+            <Label fx:id="totalSalesLabel" text="Total Sales" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
