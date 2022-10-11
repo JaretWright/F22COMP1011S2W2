@@ -52,6 +52,8 @@ public class PizzaTableController implements Initializable {
         toppingsColumn.setCellValueFactory(new PropertyValueFactory<>("toppings"));//calls getPizzaID
         tableView.getItems().addAll(DBUtility.getPizzasFromDB());
 
+        priceColumn.setStyle( "-fx-alignment: CENTER-RIGHT;");
+
         //update the total sales label
         double total =0;
         for (Pizza pizza : tableView.getItems())
