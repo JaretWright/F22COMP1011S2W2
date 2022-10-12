@@ -1,5 +1,6 @@
 package com.example.f22comp1011s2w2;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -8,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.converter.CurrencyStringConverter;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -62,5 +64,10 @@ public class PizzaTableController implements Initializable {
         }
         CurrencyStringConverter csc = new CurrencyStringConverter(Locale.CANADA);
         totalSalesLabel.setText("Total sales: "+csc.toString(total));
+    }
+
+    @FXML
+    private void switchToDashboardView(ActionEvent event) throws IOException {
+        SceneChanger.changeScenes(event,"dashboard.fxml");
     }
 }
