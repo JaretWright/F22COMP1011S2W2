@@ -24,11 +24,7 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Add data to our Pie chart
         pieChart.getData().addAll(DBUtility.getCategorySummary());
-
-        //Add data to our BarChart
-
-
-        barChart.getData().addAll(toppings);
+        barChart.getData().addAll(DBUtility.getToppingsSummary());
         barChart.setLegendVisible(false);
     }
 }
