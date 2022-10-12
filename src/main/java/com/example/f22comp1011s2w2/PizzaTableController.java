@@ -43,10 +43,10 @@ public class PizzaTableController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        pizzaIdColumn.setCellValueFactory(new PropertyValueFactory<>("pizzaID"));//calls getPizzaID
-        crustColumn.setCellValueFactory(new PropertyValueFactory<>("crustStyle"));//calls getCrust()
-        doughColumn.setCellValueFactory(new PropertyValueFactory<>("dough"));//calls getPizzaID
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("formattedPrice"));//calls getFormattedPrice
+        pizzaIdColumn.setCellValueFactory(new PropertyValueFactory<>("pizzaID"));//calls getPizzaID()
+        crustColumn.setCellValueFactory(new PropertyValueFactory<>("crustStyle"));//calls getCrustStyle()
+        doughColumn.setCellValueFactory(new PropertyValueFactory<>("dough"));//calls getDough()
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("formattedPrice"));//calls getFormattedPrice()
         sauceColumn.setCellValueFactory(new PropertyValueFactory<>("sauce"));//calls getPizzaID
         sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));//calls getSize()
         toppingsColumn.setCellValueFactory(new PropertyValueFactory<>("toppings"));//calls getPizzaID

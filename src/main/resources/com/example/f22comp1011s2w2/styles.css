@@ -5,3 +5,7 @@
 #tableView .table-column{
     -fxalignment: CENTER-RIGHT;
 }
+
+#header{
+    -fx-font-size: 35pt;
+}
