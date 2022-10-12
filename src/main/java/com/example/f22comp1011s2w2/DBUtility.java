@@ -1,5 +1,10 @@
 package com.example.f22comp1011s2w2;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -124,4 +129,82 @@ public class DBUtility {
         }
         return pizzas.values();
     }
+
+    /**
+     * This method will return PieChart.Data that shows how many pizzas were
+     * ordered for each category of toppings
+     */
+    public static ObservableList<PieChart.Data> getCategorySummary()
+    {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        //create the sql string we want to run on the database
+        String sql = "SELECT category, COUNT(pizzaID) AS numOfOrders " +
+                "FROM toppings LEFT JOIN toppingsOnPizza ON toppings.toppingID = toppingsOnPizza.toppingID " +
+                "GROUP BY category;";
+
+        //the try () is called "try with resources".  Anything opened in the () will
+        //automatically close when the try block is done.
+        try(
+                //1.  connect to the database
+                Connection conn = DriverManager.getConnection(connectUrl,user,pw);
+
+                //2.  create a statement object
+                Statement statement = conn.createStatement();
+
+                //3.  use the statement object to run the sql and return a ResultSet object
+                ResultSet resultSet = statement.executeQuery(sql);
+        )
+        {
+            //4.  loop over the resultSet and data points for our PieChart.Data
+            while (resultSet.next())
+            {
+                String category = resultSet.getString("category");
+                int numOfOrders = resultSet.getInt("numOfOrders");
+                pieChartData.add(new PieChart.Data(category,numOfOrders));
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return pieChartData;
+    }
+
+
+public static XYChart.Series<String,Integer> getToppingsSummary()
+{
+    XYChart.Series<String, Integer> toppings = new XYChart.Series<>();
+
+    //create the sql string we want to run on the database
+    String sql = "SELECT toppingName, COUNT(pizzaID) as numOfOrders " +
+            "FROM toppings LEFT JOIN toppingsOnPizza ON toppings.toppingID = toppingsOnPizza.toppingID " +
+            "GROUP BY toppings.toppingID " +
+            "ORDER BY numOfOrders DESC;";
+
+    //the try () is called "try with resources".  Anything opened in the () will
+    //automatically close when the try block is done.
+    try(
+            //1.  connect to the database
+            Connection conn = DriverManager.getConnection(connectUrl,user,pw);
+
+            //2.  create a statement object
+            Statement statement = conn.createStatement();
+
+            //3.  use the statement object to run the sql and return a ResultSet object
+            ResultSet resultSet = statement.executeQuery(sql);
+    )
+    {
+        //4.  loop over the resultSet and data points for our PieChart.Data
+        while (resultSet.next())
+        {
+            String topping = resultSet.getString("toppingName");
+            int numOfOrders = resultSet.getInt("numOfOrders");
+            toppings.getData().add(new XYChart.Data<>(topping,numOfOrders));
+        }
+    } catch (Exception e)
+    {
+        e.printStackTrace();
+    }
+    return toppings;
+}
 }

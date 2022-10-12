@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,11 +22,13 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        pieChartData.add(new PieChart.Data("dairy",6));
-        pieChartData.add(new PieChart.Data("veggie",70));
-        pieChartData.add(new PieChart.Data("meat",57));
-        pieChartData.add(new PieChart.Data("Jerry's Fav",100));
-        pieChart.getData().addAll(pieChartData);
+        //Add data to our Pie chart
+        pieChart.getData().addAll(DBUtility.getCategorySummary());
+
+        //Add data to our BarChart
+
+
+        barChart.getData().addAll(toppings);
+        barChart.setLegendVisible(false);
     }
 }
